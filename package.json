@@ -1,0 +1,15 @@
+{
+  "name": "stemming-frequency",
+  "version": "1.0.0",
+  "description": "Solution for senior developer test",
+  "main": "stemmingFrequency.js",
+  "scripts": {
+    "start": "node interface.js",
+    "test": "jest"
+  },
+  "author": "Eleanor Mollett",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.0"
+  }
+}
