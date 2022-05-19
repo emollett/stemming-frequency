@@ -2,6 +2,7 @@ const {
   getFrequency,
   stemInputWord,
   checkMultipleWords,
+  stemmingFrequency,
 } = require("./stemmingFrequency");
 
 const input =
@@ -50,6 +51,16 @@ test("should count how many times multiple words appear", () => {
 
 test("should return a message if the word isn't found", () => {
   const newInput = "Flowery flowers";
-  const output = checkMultipleWords(newInput, wordsToCheck);
+  const output = stemmingFrequency(newInput, wordsToCheck);
   expect(output["following"]).toBe("Word not found");
+});
+
+test("should throw an error if the input is not a string", () => {
+  const output = stemmingFrequency(6, wordsToCheck);
+  expect(output.message).toBe("Input is not a string");
+});
+
+test("should not return an error if the input is a string", () => {
+  const output = stemmingFrequency(input, wordsToCheck);
+  expect(output["following"]).toBe(1);
 });
