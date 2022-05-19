@@ -1,14 +1,12 @@
 function getFrequency(input, word) {
   const stemmedWord = stemInputWord(word);
   if (stemmedWord == "flow") {
-    const re = new RegExp(/flow([^(e)]|$)/, "gi");
-    const frequency = input.match(re);
-    return frequency?.length;
+    var re = new RegExp(/flow([^(e)]|$)/, "gi");
   } else {
-    const re = new RegExp(stemmedWord, "gi");
-    const frequency = input.match(re);
-    return frequency?.length;
+    var re = new RegExp(stemmedWord, "gi");
   }
+  const frequency = input.match(re);
+  return frequency?.length;
 }
 
 function stemInputWord(word) {

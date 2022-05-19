@@ -17,29 +17,26 @@ const wordsToCheck = [
   "classes",
 ];
 
-test("count how many times friend appears", () => {
+test("should count how many times a word appears", () => {
   const count = getFrequency(input, "friend");
   expect(count).toBe(5);
 });
 
-test("stem input word friendly", () => {
+test("should stem the word to check", () => {
   const output = stemInputWord("friendly");
   expect(output).toBe("friend");
+  const output2 = stemInputWord("classes");
+  expect(output2).toBe("class");
+  const output3 = stemInputWord("classification");
+  expect(output3).toBe("class");
 });
 
-test("count how many times friendly appears", () => {
+test("should count how many times a word that requires stemming appears", () => {
   const count = getFrequency(input, "friendly");
   expect(count).toBe(5);
 });
 
-test("stem to class", () => {
-  const output = stemInputWord("classes");
-  expect(output).toBe("class");
-  const output2 = stemInputWord("classification");
-  expect(output).toBe("class");
-});
-
-test("get the count for multiple words at once", () => {
+test("should count how many times multiple words appear", () => {
   const output = checkMultipleWords(input, wordsToCheck);
   expect(output["following"]).toBe(1);
   expect(output["flow"]).toBe(2);
@@ -51,7 +48,7 @@ test("get the count for multiple words at once", () => {
   expect(output["classes"]).toBe(3);
 });
 
-test("return a message if the word isn't found", () => {
+test("should return a message if the word isn't found", () => {
   const newInput = "Flowery flowers";
   const output = checkMultipleWords(newInput, wordsToCheck);
   expect(output["following"]).toBe("Word not found");

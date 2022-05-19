@@ -3,6 +3,7 @@
 Solution for senior developer interview using Node
 
 Run app with `npm start`
+
 Run tests with `npm test`
 
 ## The test
@@ -35,8 +36,8 @@ Given the input text above, when asked for the following words, return the assoc
 - Don't use stemming libraries
 - prove your solution meets the acceptance criteria.
 
-## Things to consider
+## Things to consider further
 
 - The flow/flower issue - not finding flow in flower without using its own specific test?
-- Where in the word the match comes up, do we only want to match at the beginning of a word? Does unfollow come from the same stem as follow?
+- Where in the word the match comes up, do we only want to match at the beginning of a word? Does unfollow come from the same stem as follow? Seems right to find flower in sunflower.
 - I considered throwing an error if the type of the input wasn't a string, but because my interface is using readline it should always be a string.
