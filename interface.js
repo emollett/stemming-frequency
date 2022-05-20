@@ -24,7 +24,7 @@ readline.on("line", (line) => {
       readline.close();
       break;
     default:
-      answer = checkMultipleWords(line, wordsToCheck);
+      const answer = checkMultipleWords(line, wordsToCheck);
       console.table(answer);
       break;
   }

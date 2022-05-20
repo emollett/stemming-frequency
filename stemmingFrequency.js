@@ -1,6 +1,6 @@
 function getFrequency(input, word) {
   const stemmedWord = stemInputWord(word);
-  if (stemmedWord == "flow") {
+  if (stemmedWord === "flow") {
     var re = new RegExp(/flow([^(e)]|$)/, "gi");
   } else {
     var re = new RegExp(stemmedWord, "gi");
@@ -17,8 +17,7 @@ function checkMultipleWords(input, wordsToCheck) {
   if (typeof input == "string") {
     const wordCount = new Object();
     wordsToCheck.forEach((word) => {
-      const stemmedWord = stemInputWord(word);
-      const frequency = getFrequency(input, stemmedWord);
+      const frequency = getFrequency(input, word);
       wordCount[word] = frequency || "Word not found";
     });
     return wordCount;
