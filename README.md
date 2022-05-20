@@ -35,7 +35,3 @@ Given the input text above, when asked for the following words, return the assoc
 
 - Don't use stemming libraries
 - prove your solution meets the acceptance criteria.
-
-## Things to consider further
-
-- Where in the word the match comes up, do we only want to match at the beginning of a word? Does unfollow come from the same stem as follow? Seems right to find flower in sunflower.

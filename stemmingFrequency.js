@@ -17,7 +17,9 @@ function getFrequency(input, word) {
 }
 
 function stemWord(word) {
-  return word.replace(/(ly|ses|sification|ing|s|lier|lies|y|sify)$/, "");
+  const suffixesRemoved = word.replace(/(ly|ses|sification|ing|s|lier|lies|y|sify|ed|sed|sified)$/, "");
+  const prefixesRemoved = suffixesRemoved.replace(/^(un|sub|mis|de|re)/, "");
+  return prefixesRemoved;
 }
 
 function checkMultipleWords(input, wordsToCheck) {

@@ -62,3 +62,16 @@ test("should throw an error if the input is not a string", () => {
   const output = checkMultipleWords(6, wordsToCheck);
   expect(output.message).toBe("Input is not a string");
 });
+
+test("should stem from prefixes", () => {
+  const preFixInput = "Reclassify the declassified classic before unfollowing and unfriending my friend"
+  const output = checkMultipleWords(preFixInput, wordsToCheck);
+  expect(output["following"]).toBe(1);
+  expect(output["flow"]).toBe(0);
+  expect(output["classification"]).toBe(2);
+  expect(output["class"]).toBe(2);
+  expect(output["flower"]).toBe(0);
+  expect(output["friend"]).toBe(2);
+  expect(output["friendly"]).toBe(2);
+  expect(output["classes"]).toBe(2);
+});
