@@ -1,42 +1,49 @@
-function getFrequency(input, word) {
-  const stemmedWord = stemInputWord(word);
-  if (stemmedWord === "flow") {
-    var re = new RegExp(/flow([^(e)]|$)/, "gi");
-  } else {
-    var re = new RegExp(stemmedWord, "gi");
-  }
-  const frequency = input.match(re);
-  return frequency?.length;
+function processInput(input) {
+  const inputArray = input.replace(/\./g, "").toLowerCase().split(" ");
+
+  var stemmedInputArray = [];
+  inputArray.forEach((word) => {
+    const stemmedWord = stemWord(word);
+    stemmedInputArray.push(stemmedWord);
+  });
+
+  return stemmedInputArray;
 }
 
-function stemInputWord(word) {
-  return word.replace(/(ly|es|ification|ing)$/, "");
+function getFrequency(input, word) {
+  const stemmedWord = stemWord(word);
+  const frequency = input.filter((element) => element === stemmedWord).length;
+  return frequency;
+}
+
+function stemWord(word) {
+  return word.replace(/(ly|ses|sification|ing|s|lier|lies|y|sify)$/, "");
 }
 
 function checkMultipleWords(input, wordsToCheck) {
-  if (typeof input == "string") {
-    const wordCount = new Object();
-    wordsToCheck.forEach((word) => {
-      const frequency = getFrequency(input, word);
-      wordCount[word] = frequency || "Word not found";
-    });
-    return wordCount;
-  } else {
-    throw (new Error("Input is not a string"));
-  }
-}
+  try {
+    if (typeof input == "string") {
+      const stemmedInput = processInput(input);
 
-function stemmingFrequency(input, wordsToCheck){
-  try{
-    return checkMultipleWords(input, wordsToCheck);
-  }catch(e){
+      const wordCount = new Object();
+      wordsToCheck.forEach((word) => {
+        const frequency = getFrequency(stemmedInput, word);
+        wordCount[word] = frequency;
+      });
+
+      return wordCount;
+
+    } else {
+      throw new Error("Input is not a string");
+    }
+  } catch (e) {
     return e;
   }
 }
 
 module.exports = {
   getFrequency,
-  stemInputWord,
+  stemWord,
   checkMultipleWords,
-  stemmingFrequency
+  processInput,
 };

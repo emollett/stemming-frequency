@@ -1,8 +1,8 @@
 const {
   getFrequency,
-  stemInputWord,
+  stemWord,
   checkMultipleWords,
-  stemmingFrequency,
+  processInput
 } = require("./stemmingFrequency");
 
 const input =
@@ -19,21 +19,30 @@ const wordsToCheck = [
 ];
 
 test("should count how many times a word appears", () => {
-  const count = getFrequency(input, "friend");
-  expect(count).toBe(5);
+  const count = getFrequency(input.split(" "), "flower");
+  expect(count).toBe(1);
 });
 
 test("should stem the word to check", () => {
-  const output = stemInputWord("friendly");
+  const output = stemWord("friendly");
   expect(output).toBe("friend");
-  const output2 = stemInputWord("classes");
-  expect(output2).toBe("class");
-  const output3 = stemInputWord("classification");
-  expect(output3).toBe("class");
+  const output2 = stemWord("classes");
+  expect(output2).toBe("clas");
+  const output3 = stemWord("classification");
+  expect(output3).toBe("clas");
 });
 
+test("should stem the words in the input string", () => {
+  const output = processInput(input);
+  expect(output[0]).toBe("friend");
+  expect(output[12]).toBe("clas");
+  expect(output[13]).toBe("flower");
+  expect(output[20]).toBe("flow");
+})
+
 test("should count how many times a word that requires stemming appears", () => {
-  const count = getFrequency(input, "friendly");
+  const stemmedInput = processInput(input)
+  const count = getFrequency(stemmedInput, "friendly");
   expect(count).toBe(5);
 });
 
@@ -49,18 +58,7 @@ test("should count how many times multiple words appear", () => {
   expect(output["classes"]).toBe(3);
 });
 
-test("should return a message if the word isn't found", () => {
-  const newInput = "Flowery flowers";
-  const output = stemmingFrequency(newInput, wordsToCheck);
-  expect(output["following"]).toBe("Word not found");
-});
-
 test("should throw an error if the input is not a string", () => {
-  const output = stemmingFrequency(6, wordsToCheck);
+  const output = checkMultipleWords(6, wordsToCheck);
   expect(output.message).toBe("Input is not a string");
-});
-
-test("should not return an error if the input is a string", () => {
-  const output = stemmingFrequency(input, wordsToCheck);
-  expect(output["following"]).toBe(1);
 });

@@ -38,5 +38,4 @@ Given the input text above, when asked for the following words, return the assoc
 
 ## Things to consider further
 
-- The flow/flower issue - not finding flow in flower without using its own specific test?
 - Where in the word the match comes up, do we only want to match at the beginning of a word? Does unfollow come from the same stem as follow? Seems right to find flower in sunflower.
